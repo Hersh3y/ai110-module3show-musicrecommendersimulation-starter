@@ -29,6 +29,7 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+Real-world apps like Spotify use both user history (what others clicked) and song details to make suggestions. Because this is a simple simulation, my version focuses only on the song's details. It tries to find songs that closely match the user's preferred vibes and numbers. The Song objects store genre, mood, energy, valence, etc. The UserProfile object stores favorite_genre, favorite_mood, target_energy, and likes_valence.
 ---
 
 ## Getting Started
