@@ -30,6 +30,33 @@ Some prompts to answer:
 You can include a simple diagram or bullet list if helpful.
 
 Real-world apps like Spotify use both user history (what others clicked) and song details to make suggestions. Because this is a simple simulation, my version focuses only on the song's details. It tries to find songs that closely match the user's preferred vibes and numbers. The Song objects store genre, mood, energy, valence, etc. The UserProfile object stores favorite_genre, favorite_mood, target_energy, and likes_valence.
+
+**Algorithm Recipe: Point-Weighting Scoring System**
+
+Each song in the catalog is scored using the following formula:
+
+Exact Matches (Discrete):
+- Genre match: +2.0 points
+- Mood match: +1.0 point
+
+Similarity Scoring (Continuous):
+- Energy similarity: 1.0 − |user_target_energy − song_energy| (max: 1.0 pts)
+- Valence similarity: 0.5 × (1.0 − |user_target_valence − song_valence|) (max: 0.5 pts)
+- Danceability similarity: 0.5 × (1.0 − |user_target_danceability − song_danceability|) (max: 0.5 pts)
+- Acousticness bonus: +0.3 if user likes acoustic AND song acousticness > 0.5; −0.2 if user dislikes acoustic AND song acousticness > 0.5
+
+Total Score Range: 0 to 6.0 points (higher is better)
+
+The algorithm loops through all 16 songs in the CSV, calculates a score for each, then returns the top K recommendations sorted by score descending.
+
+Why These Weights? Genre is the strongest signal (2.0) because it captures the core taste preference. Mood adds nuance (1.0). Energy is the primary numeric factor because it prevents recommending songs with the wrong intensity level. Valence and danceability refine the recommendation with secondary information. Acousticness is conditional and weighted lower because it's a more specialized preference.
+
+**Expected Biases**
+
+- Genre over-prioritization: High genre weight (2.0) may cause the system to ignore fantastic mood matches in other genres. For example, a user who loves "pop" + "happy" might miss a great "indie pop" song with perfect energy but different genre label.
+- Middle-road bias: The numeric similarity scoring favors songs close to the user's target values, potentially missing high-quality "outlier" songs that might be unexpectedly enjoyable.
+- Limited catalog: With only 16 songs, the system cannot demonstrate diversity or serendipity—it will often run out of good matches.
+- Energy dominance: Energy's 1.0 point weight matches genre (2.0 vs 1.0 for mood), creating a potential over-emphasis on intensity level at the expense of other emotional qualities.
 ---
 
 ## Getting Started
@@ -64,6 +91,18 @@ pytest
 ```
 
 You can add more tests in `tests/test_recommender.py`.
+
+---
+
+## Example Output
+
+Below are screenshots showing the recommender system output (scrolled in two parts):
+
+### Screenshot 1: Top Half of Output
+![Output Part 1](terminal1.png)
+
+### Screenshot 2: Bottom Half of Output
+![Output Part 2](terminal2.png)
 
 ---
 

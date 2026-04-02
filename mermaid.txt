@@ -1,0 +1,32 @@
+graph TD
+    A["📋 INPUT: User Profile<br/>- Favorite Genre<br/>- Favorite Mood<br/>- Target Energy<br/>- Other Preferences"] --> B["🔄 LOAD CSV<br/>songs.csv<br/>16 songs total"]
+    
+    B --> C{"🎵 FOR EACH SONG<br/>in CSV"}
+    
+    C --> D["Calculate Score<br/>using Formula:"]
+    
+    D --> E["✓ Genre Match? +2.0<br/>✓ Mood Match? +1.0"]
+    
+    E --> F["Calculate Similarity<br/>for Numeric Attrs:"]
+    
+    F --> G["Energy |user - song|<br/>Valence difference<br/>Danceability difference<br/>Acousticness bonus"]
+    
+    G --> H["📊 TOTAL SCORE<br/>for Song<br/>Range: 0-6.0"]
+    
+    H --> I["Store: Song ID + Score<br/>in Results List"]
+    
+    I --> J{More Songs<br/>in CSV?}
+    
+    J -->|Yes| C
+    J -->|No| K["↓ PROCESS COMPLETE"]
+    
+    K --> L["📈 SORT Results<br/>by Score DESC"]
+    
+    L --> M["✂️ SELECT Top K<br/>ex: Top 5 Recommendations"]
+    
+    M --> N["🎬 OUTPUT: Ranked List<br/>1. Song Title (Score)<br/>2. Song Title (Score)<br/>3. Song Title (Score)<br/>..."]
+    
+    style A fill:#e1f5ff,stroke:#01579b,color:#000
+    style N fill:#c8e6c9,stroke:#1b5e20,color:#000
+    style D fill:#fff3e0,stroke:#e65100,color:#000
+    style H fill:#f3e5f5,stroke:#4a148c,color:#000
