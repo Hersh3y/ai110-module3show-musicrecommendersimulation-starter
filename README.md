@@ -104,6 +104,38 @@ Below are screenshots showing the recommender system output (scrolled in two par
 ### Screenshot 2: Bottom Half of Output
 ![Output Part 2](terminal2.png)
 
+### Profile Recommendations
+
+![](profile_recommendations/Screenshot%202026-04-01%20220713.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220725.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220737.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220750.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220758.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220808.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220818.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220833.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220843.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220850.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220858.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220907.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220919.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220926.png)
+
+![](profile_recommendations/Screenshot%202026-04-01%20220937.png)
+
 ---
 
 ## Experiments You Tried
@@ -249,3 +281,10 @@ A few sentences about what you learned:
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
 
+My biggest learning moment: I realized that every number I chose (like doubling energy importance) is really a *political choice* about which users matter—lofi lovers got penalized, energy-lovers got rewarded, and that's not neutral math, it's a bias I built in.
+
+How AI tools helped: AI code generation let me test all four user profiles instantly and spot where "Gym Hero" was appearing for the wrong reasons, but I had to manually trace through the math myself because the AI didn't catch the filter bubble problem.
+
+What surprised me: Even though my system is just addition and subtraction, it *feels* like it understands music when you see the recommendations—that's when I realized: algorithms don't need to be intelligent to seem intelligent, they just need to match what you told them to optimize for.
+
+What I'd try next: I would add a "diversity penalty" that stops recommending the same high-energy song to everyone, then test whether that makes recommendations feel fairer without making them worse.
